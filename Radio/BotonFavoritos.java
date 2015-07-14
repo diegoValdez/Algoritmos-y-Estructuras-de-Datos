@@ -30,12 +30,14 @@ public class BotonFavoritos implements IntBoton {
 		this.estacion = estacion;
 	}
 
-	public void onClick() {	
-		
+	public void onClick(Radio rad) {	
+		rad.setEstacion(estacion);
+		rad.setFrecuencia(frecuencia);
 	}
 
-	public void Hold() {
-		
+	public void Hold(Radio rad) {
+		this.estacion = rad.getEstacion();
+		this.frecuencia = rad.getFrecuencia();
 	}
 
 	

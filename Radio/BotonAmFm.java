@@ -1,12 +1,18 @@
 
 public class BotonAmFm implements IntBoton {
 
-	public void onClick() {
-		
+	public void onClick(Radio rad) {
+		if (rad.getEstacion().equals("AM")){
+			rad.setEstacion("FM");
+			rad.setFrecuencia(87.9);
+		}
+		else{
+			rad.setEstacion("AM");
+			rad.setFrecuencia(510);
+		}
 	}
 
-
-	public void Hold() {
+	public void Hold(Radio rad) {
 		
 	}
 
