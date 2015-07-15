@@ -1,9 +1,10 @@
 
 public class BotonFavoritos implements IntBoton {
-
+	// Atributos
 	public double frecuencia;
 	public String estacion;
 	
+	// Constructores
 	public BotonFavoritos() {
 		frecuencia = 99.3;
 		estacion = "FM";
@@ -13,7 +14,8 @@ public class BotonFavoritos implements IntBoton {
 		this.frecuencia = Frecuencia;
 		this.estacion = Estacion;
 	}
-
+	
+	//Metodos
 	public double getFrecuencia() {
 		return frecuencia;
 	}
