@@ -1,0 +1,76 @@
+/* Algoritmos y Estructuras de Datos
+ * Hoja de trabajo #1
+ * Clase MiRadio, hace la funcion de Main
+ * Diego Valdez, 131094
+ * Juan Carlos Tapia, 14133
+ * 
+ */
+
+import java.util.Scanner;
+
+public class IRadio {
+
+	public static void main(String[] args) {
+		Scanner teclado = new Scanner(System.in);					//Scanner Object instantiated for user inputs
+		Radio miRadio = new Radio(100.1,"FM",true);					//Radio Object instantiated as miRad 
+		BotonAmFm amFm = new BotonAmFm();							//BotonAmFm Object instantiated as amFm to change from AM to FM
+		BotonEstado encenderApagar = new BotonEstado();						//This object allows to shut down 
+		BotonMas botonSubir = new BotonMas(true);						//this object allows to change between upper frecuencies
+		BotonMas botonBajar = new BotonMas(false);			//This object allows to change between sub frecuencies
+		BotonFavoritos[] botones = new BotonFavoritos[12]; //Favorite Button, allows store or go to 1 preset station+frecuency
+		
+		
+		while (miRad.getEstado()==true){	//Begining of the user Interface
+					
+			System.out.println("-----------------------------------------");
+			System.out.println("1.	Prender el radio");
+			System.out.println("2.	Cambia de AM a FM a AM");
+			System.out.println("3.	Avanzar en el dial de las emisoras. ");
+			System.out.println("4.	Retroceder en el dial de las emisoras. ");
+			System.out.println("5.	Guardar emisora en boton");
+			System.out.println("6.	Seleccionar emisora en boton");
+			System.out.println("7.	Apagar el radio");
+			System.out.println("-----------------------------------------");
+		
+			
+			
+			boolean isInteger = teclado.hasNextInt();
+			if (isInteger){
+				int opcion = teclado.nextInt();
+				teclado.nextLine();
+				switch (opcion){
+				case 1: // Opcion de encender el radio
+					encenderApagar.onClick(miRadio);
+					System.out.println("El radio esta encendido");
+					break;
+					
+				case 2: // Opcion de cambiar de AM a FM
+					BotonAmFm.onClick(miRadio);
+					System.out.println("El radio esta en "+miRadio.getEstacion());
+					
+					break;
+				case 3: // Opcion de aumentar la freciuencia sintonizada
+					botonSubir.onClick(miRadio);
+					System.out.println("Esta sintonizando la freciencia "+Radio.getFrecuencia());
+					break;
+					
+				case 4: // Opcion de reducir la freciuencia sintonizada
+					botonBajar.onClick(miRadio);
+					System.out.println("Esta sintonizando la freciencia "+Radio.getFrecuencia());
+					break;
+				case 5: // Opcion de guardar la frecuencia en un boton
+				
+					}
+				case 6: // Opcion de seleccionar la frecuencia en un boton
+					
+					break;
+				
+				case 7: // Opcion de apagar el radio.
+					encenderApagar.onClick(miRadio);
+					System.out.println("El radio esta apagado.");
+					System.out.println("Hasta pronto");
+					break;
+	
+	teclado.close();
+	}
+}	
