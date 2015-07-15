@@ -47,13 +47,7 @@ public class Radio {
 		this.estado = estado;
 	}
 	
-	public void apagar() {
-		estado = false;
-	}
 	
-	public void encender() {
-		estado = true;
-	}
 	
 	
 }
