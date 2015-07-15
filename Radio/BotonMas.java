@@ -19,7 +19,7 @@ public class BotonMas implements IntBoton {
 				
 				}
 				else{
-					rad.setFrecuencia(rad.getFrecuencia()+0.2);	
+					rad.setFrecuencia(Math.round(rad.getFrecuencia()+0.2));	
 				}
 				
 				break;

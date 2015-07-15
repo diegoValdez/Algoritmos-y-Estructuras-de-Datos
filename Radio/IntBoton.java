@@ -1,5 +1,5 @@
 
 public interface IntBoton {
-	public void onClick();
-	public void Hold();
+	public void onClick(Radio rad);
+	public void Hold(Radio rad);
 }

@@ -1,5 +1,7 @@
-/* 
- * 
+/* Algoritmos y Estructuras de Datos
+ * Hoja de trabajo #1
+ * Clase MiRadio, hace la funcion de Main
+ * Diego Valdez, 131094
  * 
  * 
  */
@@ -9,26 +11,26 @@ import java.util.Scanner;
 public class MiRadio {
 
 	public static void main(String[] args) {
-		Scanner teclado = new Scanner(System.in);
-		Radio miRad = new Radio(100.1,"FM",true);
-		BotonAmFm amFm = new BotonAmFm();
-		BotonEstado encAp = new BotonEstado();
-		BotonMas botSub = new BotonMas(true);
-		BotonMas botBaj = new BotonMas(false);
-		BotonFavoritos bot1 = new BotonFavoritos(96.5,"FM");
-		BotonFavoritos bot2 = new BotonFavoritos(96.5,"FM");
-		BotonFavoritos bot3 = new BotonFavoritos(96.5,"FM");
-		BotonFavoritos bot4 = new BotonFavoritos(96.5,"FM");
-		BotonFavoritos bot5 = new BotonFavoritos(96.5,"FM");
-//		BotonFavoritos bot6 = new BotonFavoritos(96.5,"FM");
-//		BotonFavoritos bot7 = new BotonFavoritos(530,"AM");
-//		BotonFavoritos bot8 = new BotonFavoritos(530,"AM");
-//		BotonFavoritos bot9 = new BotonFavoritos(530,"AM");
-//		BotonFavoritos bot10 = new BotonFavoritos(530,"AM");
-//		BotonFavoritos bot11 = new BotonFavoritos(530,"AM");
-//		BotonFavoritos bot12 = new BotonFavoritos(530,"AM");
+		Scanner teclado = new Scanner(System.in);					//Scanner Object instantiated for user inputs
+		Radio miRad = new Radio(100.1,"FM",true);					//Radio Object instantiated as miRad 
+		BotonAmFm amFm = new BotonAmFm();							//BotonAmFm Object instantiated as amFm to change from AM to FM
+		BotonEstado encAp = new BotonEstado();						//This object allows to shut down 
+		BotonMas botSub = new BotonMas(true);						//this object allows to change between upper frecuencies
+		BotonMas botBaj = new BotonMas(false);						//This object allows to change between sub frecuencies
+		BotonFavoritos bot1 = new BotonFavoritos(96.5,"FM");		//Favorite Button, allows store or go to 1 preset station+frecuency
+		BotonFavoritos bot2 = new BotonFavoritos(96.5,"FM");		//Favorite Button, allows store or go to 1 preset station+frecuency	
+		BotonFavoritos bot3 = new BotonFavoritos(96.5,"FM");		//Favorite Button, allows store or go to 1 preset station+frecuency
+		BotonFavoritos bot4 = new BotonFavoritos(96.5,"FM");		//Favorite Button, allows store or go to 1 preset station+frecuency
+		BotonFavoritos bot5 = new BotonFavoritos(96.5,"FM");		//Favorite Button, allows store or go to 1 preset station+frecuency
+		BotonFavoritos bot6 = new BotonFavoritos(96.5,"FM");		//Favorite Button, allows store or go to 1 preset station+frecuency
+		BotonFavoritos bot7 = new BotonFavoritos(530,"AM");			//Favorite Button, allows store or go to 1 preset station+frecuency
+		BotonFavoritos bot8 = new BotonFavoritos(530,"AM");			//Favorite Button, allows store or go to 1 preset station+frecuency
+		BotonFavoritos bot9 = new BotonFavoritos(530,"AM");			//Favorite Button, allows store or go to 1 preset station+frecuency
+		BotonFavoritos bot10 = new BotonFavoritos(530,"AM");		//Favorite Button, allows store or go to 1 preset station+frecuency
+		BotonFavoritos bot11 = new BotonFavoritos(530,"AM");		//Favorite Button, allows store or go to 1 preset station+frecuency
+		BotonFavoritos bot12 = new BotonFavoritos(530,"AM");		//Favorite Button, allows store or go to 1 preset station+frecuency
 		
-		while (miRad.getEstado()==true){
+		while (miRad.getEstado()==true){	//Begining of the user Interface
 					
 			System.out.println("-----------------------------------------");
 			System.out.println("|  ----------- ---- ---- ---- ---- ---  |");
@@ -49,14 +51,17 @@ public class MiRadio {
 			System.out.println("     deseé realizar, por ejemplo  <<     ");
 			System.out.println("   este cambiara a la estacion anterior  ");
 			
-					
-			if (teclado.hasNextInt()){
+			boolean isInteger = teclado.hasNextInt();
+			
+			if (isInteger){
 				int opcion = teclado.nextInt();
+				teclado.nextLine();
 				switch (opcion){
 				case 1:
 					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
 					if (teclado.hasNextInt()){
 						int op = teclado.nextInt();
+						teclado.nextLine();
 						switch (op){
 						case 1:  
 							bot1.onClick(miRad);
@@ -67,12 +72,14 @@ public class MiRadio {
 						}
 					}
 					else{
+						System.out.println("No es un Valor Valido");
 						break;
 					}
 				case 2:
 					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
 					if (teclado.hasNextInt()){
 						int op = teclado.nextInt();
+						teclado.nextLine();
 						switch (op){
 						case 1:  
 							bot2.onClick(miRad);
@@ -83,6 +90,7 @@ public class MiRadio {
 						}
 					}
 					else{
+						System.out.println("No es un Valor Valido");
 						break;
 					}
 					break;
@@ -90,6 +98,7 @@ public class MiRadio {
 					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
 					if (teclado.hasNextInt()){
 						int op = teclado.nextInt();
+						teclado.nextLine();
 						switch (op){
 						case 1:  
 							bot3.onClick(miRad);
@@ -100,12 +109,14 @@ public class MiRadio {
 						}
 					}
 					else{
+						System.out.println("No es un Valor Valido");
 						break;
 					}
 				case 4:
 					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
 					if (teclado.hasNextInt()){
 						int op = teclado.nextInt();
+						teclado.nextLine();
 						switch (op){
 						case 1:  
 							bot4.onClick(miRad);
@@ -116,12 +127,14 @@ public class MiRadio {
 						}
 					}
 					else{
+						System.out.println("No es un Valor Valido");
 						break;
 					}
 				case 5:
 					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
 					if (teclado.hasNextInt()){
 						int op = teclado.nextInt();
+						teclado.nextLine();
 						switch (op){
 						case 1:  
 							bot5.onClick(miRad);
@@ -130,49 +143,162 @@ public class MiRadio {
 							bot5.Hold(miRad);
 							break;
 						}
-					}
-					else{
+					}	
+					else {
+						System.out.println("No es un Valor Valido");
 						break;
 					}
-//				case 6:
-//					break;
-//				case 7:
-//					break;
-//				case 8:
-//					break;
-//				case 9:
-//					break;
-//				case 10:
-//					break;
-//				case 11:
-//					break;
-//				case 12:
-//					break;
-//				}
-//			}
-			
-			String opcion1 = teclado.nextLine();
-			
-			if (opcion1.equals("<<")){
-				botBaj.onClick(miRad);
-			}
-			else if(opcion1.equals(">>")){
-				botSub.onClick(miRad);
-			}
-			else if(opcion1.equals("O")){
-				encAp.onClick(miRad);
-			}
-			else if(opcion1.equals("AM/FM")){
-				amFm.onClick(miRad);
+				case 6:
+					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
+					if (teclado.hasNextInt()){
+						int op = teclado.nextInt();
+						teclado.nextLine();
+						switch (op){
+						case 1:  
+							bot6.onClick(miRad);
+							break;
+						case 2:
+							bot6.Hold(miRad);
+							break;
+						}
+					}	
+					else {
+						System.out.println("No es un Valor Valido");
+						break;
+					}
+				case 7:
+					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
+					if (teclado.hasNextInt()){
+						int op = teclado.nextInt();
+						teclado.nextLine();
+						switch (op){
+						case 1:  
+							bot7.onClick(miRad);
+							break;
+						case 2:
+							bot7.Hold(miRad);
+							break;
+						}
+					}	
+					else {
+						System.out.println("No es un Valor Valido");
+						break;
+					}
+				case 8:
+					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
+					if (teclado.hasNextInt()){
+						int op = teclado.nextInt();
+						teclado.nextLine();
+						switch (op){
+						case 1:  
+							bot8.onClick(miRad);
+							break;
+						case 2:
+							bot8.Hold(miRad);
+							break;
+						}
+					}	
+					else {
+						System.out.println("No es un Valor Valido");
+						break;
+					}
+				case 9:
+					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
+					if (teclado.hasNextInt()){
+						int op = teclado.nextInt();
+						teclado.nextLine();
+						switch (op){
+						case 1:  
+							bot9.onClick(miRad);
+							break;
+						case 2:
+							bot9.Hold(miRad);
+							break;
+						}
+					}	
+					else {
+						System.out.println("No es un Valor Valido");
+						break;
+					}
+				case 10:
+					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
+					if (teclado.hasNextInt()){
+						int op = teclado.nextInt();
+						teclado.nextLine();
+						switch (op){
+						case 1:  
+							bot10.onClick(miRad);
+							break;
+						case 2:
+							bot10.Hold(miRad);
+							break;
+						}
+					}	
+					else {
+						System.out.println("No es un Valor Valido");
+						break;
+					}
+				case 11:
+					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
+					if (teclado.hasNextInt()){
+						int op = teclado.nextInt();
+						teclado.nextLine();
+						switch (op){
+						case 1:  
+							bot11.onClick(miRad);
+							break;
+						case 2:
+							bot11.Hold(miRad);
+							break;
+						}
+					}	
+					else {
+						System.out.println("No es un Valor Valido");
+						break;
+					}
+				case 12:
+					System.out.println("1. Sintonizar \n2. Guardar nueva estacion");
+					if (teclado.hasNextInt()){
+						int op = teclado.nextInt();
+						teclado.nextLine();
+						switch (op){
+						case 1:  
+							bot12.onClick(miRad);
+							break;
+						case 2:
+							bot12.Hold(miRad);
+							break;
+						}
+					}	
+					else {
+						System.out.println("No es un Valor Valido");
+						break;
+					}
+				}
 			}
 			else{
-				miRad.setEstado(true);
+				String opcion1 = teclado.nextLine();
+				
+				if (opcion1.equals("<<")){
+					botBaj.onClick(miRad);
+				}
+				else if(opcion1.equals(">>")){
+					botSub.onClick(miRad);
+				}
+				else if(opcion1.equals("O")){
+					encAp.onClick(miRad);
+				}
+				else if(opcion1.equals("AM/FM")){
+					amFm.onClick(miRad);
+				}
+				else{
+					miRad.setEstado(true);
+				}
 			}
-			}
-		}
-	}
+		}	
+	
 	teclado.close();
-}
 	}
+}	
 
 

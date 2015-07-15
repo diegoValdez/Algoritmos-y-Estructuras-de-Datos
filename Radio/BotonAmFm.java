@@ -8,7 +8,7 @@ public class BotonAmFm implements IntBoton {
 		}
 		else{
 			rad.setEstacion("AM");
-			rad.setFrecuencia(510);
+			rad.setFrecuencia(530);
 		}
 	}
 
