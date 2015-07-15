@@ -5,18 +5,20 @@
  */
 
 public class Radio {
+	// Atributos
 	public double frecuencia;
 	public String estacion;
 	public boolean estado;
 	public int botones;
 	
+	// Constructor
 	public Radio() {
 		frecuencia = 87.9;
 		estacion = "FM";
 		estado = false;
 		botones = 12;
 	}
-	
+	// Metodos
 	public Radio(double Frecuencia, String Estacion, boolean Estado) {
 		this.frecuencia = Frecuencia;
 		this.estacion = Estacion;
