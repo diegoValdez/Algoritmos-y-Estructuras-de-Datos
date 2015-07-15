@@ -1,21 +1,21 @@
 
 public class BotonMas implements IntBoton {
-
-	public boolean tipo;
+	// Atributos
+	public boolean tipo; //True significa que el boton aumenta la frecuencia, False significa que la disminuye.
 	
 	
-	
+	// Constructor
 	public BotonMas(boolean tipo) {
 		this.tipo = tipo;
 	}
 
-
-	public void onClick(Radio rad) {
+	// Atributos
+	public void onClick(Radio rad) { // Este atributo cambia la frecuencia cuando se selecciona la opcion de cambiarla.
 		if (tipo==true){
-			switch (rad.getEstacion()){
+			switch (rad.getEstacion()){ // El cambio de frecuencia aumenta dependiendo de AM y FM.
 			case "FM":
-				if (rad.getFrecuencia()==107.9){
-					rad.setFrecuencia(87.9);
+				if (rad.getFrecuencia()==107.9){  // En ambos casos se revisa si se alcanzo la maxima frecuencia posible
+					rad.setFrecuencia(87.9); // Y de ser el caso, se vuelve al inicio
 				
 				}
 				else{
