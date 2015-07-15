@@ -2,7 +2,7 @@
  * Hoja de trabajo #1
  * Clase MiRadio, hace la funcion de Main
  * Diego Valdez, 131094
- * 
+ * Juan Carlos Tapia, 14133
  * 
  */
 
@@ -48,7 +48,7 @@ public class MiRadio {
 			System.out.println("      En el interior de cada | | se      ");
 			System.out.println("      observa el valor que se debe       ");
 			System.out.println("      ingresar, segun la accion que      ");
-			System.out.println("     deseé realizar, por ejemplo  <<     ");
+			System.out.println("     deseÃ© realizar, por ejemplo  <<     ");
 			System.out.println("   este cambiara a la estacion anterior  ");
 			
 			boolean isInteger = teclado.hasNextInt();
