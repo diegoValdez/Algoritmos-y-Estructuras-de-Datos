@@ -93,7 +93,6 @@ public class IRadio {
 					System.out.println("Hasta pronto");
 					break;
 	
-	teclado.close();
 	}
 		}
 		}
