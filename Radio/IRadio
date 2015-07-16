@@ -59,12 +59,34 @@ public class IRadio {
 					System.out.println("Esta sintonizando la freciencia "+Radio.getFrecuencia());
 					break;
 				case 5: // Opcion de guardar la frecuencia en un boton
-				
-					}
-				case 6: // Opcion de seleccionar la frecuencia en un boton
-					
+				System.out.println("En que boton desea guardar la estacion?");
+					boolean opcion = teclado.hasNextInt();
+					if (opcion < 12){
+					opcion = opcion - 1;
+					botones[opcion].Hold(miRadio);
+					System.out.println("Ha guardado la estacion "+Radio.getFrecuencia()+" en el boton "+ (opcion + 1) +");
 					break;
-				
+					}
+					else
+					{
+					System.out.println("No existe ese boton");
+					break;
+					}
+					
+				case 6: // Opcion de seleccionar la frecuencia en un boton
+					System.out.println("Que boton desea escuchar?);
+					boolean opcion = teclado.hasNextInt();
+					if (opcion < 12){
+					opcion = opcion - 1;
+					System.out.println("Esta sintonizando la freciencia "+botones[opcion].getFrecuencia());
+					break;
+					}
+					else
+					{
+					System.out.println("No existe ese boton);
+					break;
+					}
+					
 				case 7: // Opcion de apagar el radio.
 					encenderApagar.onClick(miRadio);
 					System.out.println("El radio esta apagado.");
