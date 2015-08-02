@@ -12,11 +12,18 @@ public class Controler {
 	public void OrderDocument(){
 		docGen.CreateUnorderedDoc();
 		docGen.loadRandomInt();
-		bSort.BubbleSort(docGen.getIntArray());
+		int[] intArray = bSort.BubbleSort(docGen.getIntArray());
+		for(int i = 0;i<3000;i++){
+			int num = intArray[i];
+			System.out.println(num);
+		}
+		docGen.setIntArray(intArray);
 		docGen.CreateOrderedDoc();
 	}
 	
 	public void alreadyOrderedDocument(){
-		
+		docGen.loadRandomIntOrdered();
+		bSort.BubbleSort(docGen.getIntArray());
+		docGen.CreateOrderedDoc();
 	}
 }

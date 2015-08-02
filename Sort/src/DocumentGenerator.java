@@ -14,21 +14,21 @@ public class DocumentGenerator {
 	
 	public DocumentGenerator() {
 		this.intArray = new int[3000];
-		this.setOrdered(false);
+		this.Ordered = false;
 	}
 
 	public int[] getIntArray(){
 		return intArray;
 	}
 		
+	public void setIntArray(int[] newArr){
+		this.intArray = newArr;
+	}
+	
 	public boolean isOrdered() {
 		return Ordered;
 	}
 
-	public void setOrdered(boolean ordered) {
-		Ordered = ordered;
-	}
-	
 	public void CreateUnorderedDoc(){	
 		try {
 			FileWriter fw = new FileWriter("C:\\Users\\DiegoRoberto\\workspace\\Sort\\src\\Datos.txt");
@@ -50,7 +50,7 @@ public class DocumentGenerator {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.setOrdered(true);
+		this.Ordered=true;
 	}
 	
 	public void loadRandomInt(){
@@ -78,12 +78,11 @@ public class DocumentGenerator {
 			try {
 				FileWriter fw = new FileWriter("C:\\Users\\DiegoRoberto\\workspace\\Sort\\src\\DatosOrdenados.txt");
 				BufferedWriter bw = new BufferedWriter(fw);
-				Random RandInt = new Random();
-				String actualInt;
-	
+				int newInt;
+					
 				for(int i = 0;i<3000;i++){
-					int newInt = RandInt.nextInt(3000);
-					actualInt = String.valueOf(newInt);
+					newInt=intArray[i];
+					String actualInt = String.valueOf(newInt);
 					bw.write(actualInt);		
 					bw.newLine();
 				}
@@ -98,6 +97,24 @@ public class DocumentGenerator {
 		}
 	}
 
-	
+	public void loadRandomIntOrdered(){
+		try {
+			FileReader fr = new FileReader("C:\\Users\\DiegoRoberto\\workspace\\Sort\\src\\DatosOrdenados.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String readedString;
+			
+			for(int i = 0;i<3000;i++){
+				readedString = br.readLine();
+				this.intArray[i] =  Integer.parseInt(readedString);
+			}
+			br.close();
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
 	
