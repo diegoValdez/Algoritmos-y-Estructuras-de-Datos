@@ -9,11 +9,27 @@ import java.io.BufferedReader;
 
 public class DocumentGenerator {
 	
-	public static void main(String[] args){
+	private int[] intArray;
+	private boolean Ordered;
+	
+	public DocumentGenerator() {
+		this.intArray = new int[3000];
+		this.setOrdered(false);
+	}
+
+	public int[] getIntArray(){
+		return intArray;
+	}
 		
-		int[] intArray;
-		intArray = new int[3000];
-		
+	public boolean isOrdered() {
+		return Ordered;
+	}
+
+	public void setOrdered(boolean ordered) {
+		Ordered = ordered;
+	}
+	
+	public void CreateUnorderedDoc(){	
 		try {
 			FileWriter fw = new FileWriter("C:\\Users\\DiegoRoberto\\workspace\\Sort\\src\\Datos.txt");
 			BufferedWriter bw = new BufferedWriter(fw);
@@ -34,7 +50,10 @@ public class DocumentGenerator {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		this.setOrdered(true);
+	}
+	
+	public void loadRandomInt(){
 		try {
 			FileReader fr = new FileReader("C:\\Users\\DiegoRoberto\\workspace\\Sort\\src\\Datos.txt");
 			BufferedReader br = new BufferedReader(fr);
@@ -42,7 +61,7 @@ public class DocumentGenerator {
 			
 			for(int i = 0;i<3000;i++){
 				readedString = br.readLine();
-				intArray[i] =  Integer.parseInt(readedString);
+				this.intArray[i] =  Integer.parseInt(readedString);
 			}
 			br.close();
 		}
@@ -52,12 +71,33 @@ public class DocumentGenerator {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		for(int i = 0;i<3000;i++){
-			System.out.println(intArray[i]);
-		}
-	
 	}
-		
+	
+	public void CreateOrderedDoc(){	
+		if (this.Ordered){
+			try {
+				FileWriter fw = new FileWriter("C:\\Users\\DiegoRoberto\\workspace\\Sort\\src\\DatosOrdenados.txt");
+				BufferedWriter bw = new BufferedWriter(fw);
+				Random RandInt = new Random();
+				String actualInt;
+	
+				for(int i = 0;i<3000;i++){
+					int newInt = RandInt.nextInt(3000);
+					actualInt = String.valueOf(newInt);
+					bw.write(actualInt);		
+					bw.newLine();
+				}
+				bw.close();
+			}
+			catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} 
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	
 }
 	
