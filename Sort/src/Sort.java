@@ -1,4 +1,5 @@
 
+
 public class Sort implements Comparable<Sort> {
 	
 	private int firstInt;
