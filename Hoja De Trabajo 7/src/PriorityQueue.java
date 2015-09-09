@@ -1,3 +1,10 @@
+/*Algoritmos y Esctructuras de Datos
+ * Interface PriorityQueue
+ * Diego Valdez, 131094
+ * Diego Regalado, 13018
+ */
+
+
 /**
  * CSE 373, Winter 2011, Jessica Miller
  * An interface that defines the operations for a PrioityQueue ADT for any type.

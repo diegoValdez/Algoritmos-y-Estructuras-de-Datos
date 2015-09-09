@@ -1,3 +1,9 @@
+/*Algoritmos y Esctructuras de Datos
+ * Main
+ * Diego Valdez, 131094
+ * Diego Regalado, 13018
+ */
+
 import java.util.Scanner;
 
 public class Main {

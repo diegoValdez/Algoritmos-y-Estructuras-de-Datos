@@ -1,3 +1,9 @@
+/*Algoritmos y Esctructuras de Datos
+ * BinaryHeap
+ * Diego Valdez, 131094
+ * Diego Regalado, 13018
+ */
+
 
 /**
  * CSE 373, Winter 2011, Jessica Miller
@@ -17,7 +23,6 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
      */
 
 	public BinaryHeap () {
-        // Java doesn't allow construction of arrays of placeholder data types 
         array = new Vector<E>();  
         size = 0;
     }
@@ -115,27 +120,27 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     }    
     
     protected boolean hasParent(int i) {
-        return i > 0;
+        return i < size-1;
     }
     
     
     protected int leftIndex(int i) {
-    	return (i * 2) -1;
+    	return i -1;
     }
     
     
     protected int rightIndex(int i) {
-        return ((i * 2) + 1);
+        return (i-2);
     }
     
     
     protected boolean hasLeftChild(int i) {
-        return leftIndex(i) <= size;
+        return leftIndex(i) <= size && leftIndex(i)>=0;
     }
     
     
     protected boolean hasRightChild(int i) {
-        return rightIndex(i) <= size;
+        return rightIndex(i) <= size && rightIndex(i)>=0;
     }
     
     
@@ -145,8 +150,8 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     
     
     protected int parentIndex(int i) {
-        if (i==1) return 1;
-        else return i / 2;
+        if (i==size-1) return size-1;
+        else return i/2 +2 + i/2;
     }  
     
     protected void swap(int index1, int index2) {

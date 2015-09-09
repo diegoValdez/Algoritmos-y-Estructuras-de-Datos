@@ -1,3 +1,10 @@
+/*Algoritmos y Esctructuras de Datos
+ * Controller
+ * Diego Valdez, 131094
+ * Diego Regalado, 13018
+ * Esta clase implementa el algoritmo de huffMan para la generacion del codigo. metodo codeGenerator().
+ */
+
 
 import java.util.*;
 
