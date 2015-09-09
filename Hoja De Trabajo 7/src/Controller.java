@@ -15,6 +15,8 @@ public class Controller {
 		createLetterStack(word);
 		setFullTree(new BinaryHeap<BinaryTree<Letter>>());
 		createBinaryHeap();	
+		setReferencedTree();
+		setCode();
 		
 	}
 	
@@ -25,15 +27,7 @@ public class Controller {
 			
 		}
 	}
-	
-	public void printFirst(){
-		System.out.println(thisLetter.peek().toString()+"\n");
-	}
-	
-	public void printTree(){
-		fullTree.printHeap();
-	}
-	
+		
 	public void createLetterStack(String word){
 		Stack<String> charsInWord = new Stack<String>();
 		word = word.toUpperCase();
@@ -118,12 +112,12 @@ public class Controller {
 				else {
 					if (i%2 == 0){
 						Code = Code + "1"; 
-						fullTree.get(i).getValue().setCode(Code);
+						fullTree.get(i).getValue().setCode(Integer.parseInt(Code));
 						thisLetter.add(fullTree.get(i).getValue());
 					}
 					else {
 						Code = Code + "0";
-						fullTree.get(i).getValue().setCode(Code);
+						fullTree.get(i).getValue().setCode(Integer.parseInt(Code));
 						thisLetter.add(fullTree.get(i).getValue());
 					}
 				}
@@ -135,6 +129,23 @@ public class Controller {
 		for (int i = 0; i<fullTree.getSize(); i++){
 			codeGenerator(fullTree.get(i).getValue().getThisChar());
 		}
+	}
+	
+	public String decodeMessage(String a){
+		String message = "";
+		String lookFor = "";
+		Integer code = 0;
+		
+		for (int i = 0; i<a.length(); i++){
+			lookFor = lookFor + String.valueOf(a.charAt(i));
+			code = Integer.parseInt(lookFor);
+			for (int j = 0; j<thisLetter.size(); j++)
+				if (thisLetter.get(j).codeFound(code)){
+					message = message + thisLetter.get(j).getThisChar();
+					lookFor = "";
+				}	
+		}
+		return message;	
 	}
 			
 		

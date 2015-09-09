@@ -8,32 +8,31 @@ public class Main {
 		Controller ArbolBinario;
 		
 		Scanner teclado = new Scanner(System.in);
-		System.out.println("Ingrese Palabra");
+		System.out.println("Ingrese Palabra Para crear el Codigo...");
 		String PALABRA = teclado.nextLine();
 		
 		ArbolBinario = new Controller(PALABRA);
 		
-/*		ArbolBinario.PrintLetters();
+		int opcion =0;
 		
-		System.out.println("The first element is: " );
-		ArbolBinario.printFirst();
-		System.out.println("\n \n \n \n \n \n " );*/
-		
-		
-		
-		ArbolBinario.setReferencedTree();
-		
-		ArbolBinario.setCode();
-		
-		ArbolBinario.PrintLetters();
-		
-		ArbolBinario.printTree();
-		
-		System.out.println("El tamaño del Arbol es: " + ArbolBinario.getFullTree().getAll().size());
-		
-		
-		
-		
+		do{
+			System.out.println("El listado de letras con su codigo es: \n");
+			ArbolBinario.PrintLetters();
+			System.out.println("¿Que desea Realizar?");
+			System.out.println("1. Decodificar mensaje");
+			System.out.println("2. Salir");
+			
+			opcion = teclado.nextInt();
+			teclado.nextLine();
+			
+			if (opcion == 1){
+				System.out.println("ingrese la palabra en codigo: \n");
+				System.out.println("El codigo decodificado es: " + ArbolBinario.decodeMessage(teclado.nextLine()));
+			}
+			
+		}while (opcion != 2);
+				
+		System.out.println("Ha Salido del Programa");
 				
 		teclado.close();
 		

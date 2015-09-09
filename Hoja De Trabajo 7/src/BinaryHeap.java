@@ -36,10 +36,6 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
 	}
 
     
-	public void setArray(Vector<E> array) {
-		this.array = array;
-	}
-    
 	public void add(E value){
 		size++;
 		array.add(value);
@@ -116,14 +112,7 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
      */
     public String toString() {
         return array.toString();
-    }
-    
-    public void printHeap() {
-        for (int i=0; i<array.size(); i++){
-        	System.out.println(i + array.get(i).toString());
-        }
-    }
-     
+    }    
     
     protected boolean hasParent(int i) {
         return i > 0;

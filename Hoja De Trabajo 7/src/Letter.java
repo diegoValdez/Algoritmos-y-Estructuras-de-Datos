@@ -3,18 +3,18 @@ public class Letter implements Comparable<Letter> {
 	
 	private int times;
 	private String thisChar;
-	private String code;
+	private int code;
 	
 	public Letter() {
 		this.times = 0;
 		this.thisChar = "";
-		this.code ="";
+		this.code =0;
 	}
 	
 	public Letter(int times, String thisChar) {
 		this.times = times;
 		this.thisChar = thisChar;
-		this.code ="";
+		this.code =0;
 	}
 
 	public int getTimes() {
@@ -33,11 +33,11 @@ public class Letter implements Comparable<Letter> {
 		this.thisChar = thisChar;
 	}
 	
-	public String getCode() {
+	public int getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
 
@@ -55,6 +55,11 @@ public class Letter implements Comparable<Letter> {
 	
 	public boolean equals(Object o){
 		if (this.thisChar.equals(((Letter) o).getThisChar())) return true;
+		else return false;
+	}
+	
+	public boolean codeFound(int o){
+		if (code == o ) return true;
 		else return false;
 	}
 	
