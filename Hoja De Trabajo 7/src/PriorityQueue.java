@@ -24,10 +24,9 @@ public interface PriorityQueue<E> {
 	    public E peek();
 
 	    /**
-	     * Deletes and returns the element at the top of the priority queue.
-	     * @return the element at the top of the priority queue
+	     * Deletes and  the element at the top of the priority queue.
 	     * @throws IllegalStateException if priority queue is empty
 	     */       
-	    public E remove();
+	    public void remove();
 }
 

@@ -13,13 +13,27 @@ public class Main {
 		
 		ArbolBinario = new Controller(PALABRA);
 		
-		ArbolBinario.PrintLetters();
+/*		ArbolBinario.PrintLetters();
 		
 		System.out.println("The first element is: " );
 		ArbolBinario.printFirst();
-		System.out.println("\n \n \n \n \n \n " );
+		System.out.println("\n \n \n \n \n \n " );*/
+		
+		
+		
+		ArbolBinario.setReferencedTree();
+		
+		ArbolBinario.setCode();
+		
+		ArbolBinario.PrintLetters();
 		
 		ArbolBinario.printTree();
+		
+		System.out.println("El tamaño del Arbol es: " + ArbolBinario.getFullTree().getAll().size());
+		
+		
+		
+		
 				
 		teclado.close();
 		

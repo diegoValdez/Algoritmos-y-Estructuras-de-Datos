@@ -8,44 +8,72 @@
 import java.util.*;
 
 public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
-    private static final int DEFAULT_CAPACITY = 10;
-    protected E[] array;
+ 
+    protected Vector<E> array;
     protected int size;
     
-    public E get(int index) {
-		return array[index];
-	}
-
-	public void setArray(E[] array) {
-		this.array = array;
-	}
-  
     /**
      * Constructs a new BinaryHeap.
      */
-    @SuppressWarnings("unchecked")
+
 	public BinaryHeap () {
         // Java doesn't allow construction of arrays of placeholder data types 
-        array = (E[])new Comparable[DEFAULT_CAPACITY];  
+        array = new Vector<E>();  
         size = 0;
     }
+   
     
+	public Vector<E> getAll(){
+		return array;
+	}
+	
+	public void setAll(Vector<E> newArray){
+		this.array = newArray;
+	}
+	
+    public E get(int index) {
+		return array.get(index);
+	}
+
     
-    /**
+	public void setArray(Vector<E> array) {
+		this.array = array;
+	}
+    
+	public void add(E value){
+		size++;
+		array.add(value);
+	}
+	
+	public void add(int i, E value){
+		size++;
+		array.add(i, value);
+	}
+    
+    public int getSize() {
+		return size;
+	}
+
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+
+	/**
      * Adds a value to the min-heap.
      */
-    public void add(E value) {
-        // grow array if needed
-        if (size >= array.length - 1) {
-            array = this.resize();
-        }        
+    public void addOrdered(E value) {       
+        E object;
+        array.add(0, value);
+        for (int i = 1; i<=size; i++){
+	        object = array.get(i);
+	        if ( object.compareTo(value)== 1){
+	        	swap(array.indexOf(value), i );
+	        }
+	    }
         
-        // place element into heap at bottom
         size++;
-        int index = size;
-        array[index] = value;
-        
-        bubbleUp();
     }
     
     
@@ -65,25 +93,20 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
             throw new IllegalStateException();
         }
         
-        return array[1];
+        return array.get(0);
     }
 
     
     /**
      * Removes and returns the minimum element in the heap.
      */
-    public E remove() {
-    	// what do want return?
-    	E result = peek();
+    public void remove() {
+    	
+    	array.remove(0);
     	
     	// get rid of the last leaf/decrement
-    	array[1] = array[size];
-    	array[size] = null;
-    	size--;
-    	
-    	bubbleDown();
-    	
-    	return result;
+    	size--;    	
+
     }
     
     
@@ -92,71 +115,28 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
      * heap structure and order properties.
      */
     public String toString() {
-        return Arrays.toString(array);
-    }
-
-    
-    /**
-     * Performs the "bubble down" operation to place the element that is at the 
-     * root of the heap in its correct place so that the heap maintains the 
-     * min-heap order property.
-     */
-    protected void bubbleDown() {
-        int index = 1;
-        
-        // bubble down
-        while (hasLeftChild(index)) {
-            // which of my children is smaller?
-            int smallerChild = leftIndex(index);
-            
-            // bubble with the smaller child, if I have a smaller child
-            if (hasRightChild(index)
-                && array[leftIndex(index)].compareTo(array[rightIndex(index)]) > 0) {
-                smallerChild = rightIndex(index);
-            } 
-            
-            if (array[index].compareTo(array[smallerChild]) > 0) {
-                swap(index, smallerChild);
-            } else {
-                // otherwise, get outta here!
-                break;
-            }
-            
-            // make sure to update loop counter/index of where last el is put
-            index = smallerChild;
-        }        
+        return array.toString();
     }
     
-    
-    /**
-     * Performs the "bubble up" operation to place a newly inserted element 
-     * (i.e. the element that is at the size index) in its correct place so 
-     * that the heap maintains the min-heap order property.
-     */
-    protected void bubbleUp() {
-        int index = this.size;
-        
-        while (hasParent(index)
-                && (parent(index).compareTo(array[index]) > 0)) {
-            // parent/child are out of order; swap them
-            swap(index, parentIndex(index));
-            index = parentIndex(index);
-        }        
+    public void printHeap() {
+        for (int i=0; i<array.size(); i++){
+        	System.out.println(i + array.get(i).toString());
+        }
     }
-    
+     
     
     protected boolean hasParent(int i) {
-        return i >= 1;
+        return i > 0;
     }
     
     
     protected int leftIndex(int i) {
-    	return i * 2;
+    	return (i * 2) -1;
     }
     
     
     protected int rightIndex(int i) {
-        return i * 2 + 1;
+        return ((i * 2) + 1);
     }
     
     
@@ -171,24 +151,28 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     
     
     protected E parent(int i) {
-        return array[parentIndex(i)];
+        return array.get(parentIndex(i));
     }
     
     
     protected int parentIndex(int i) {
         if (i==1) return 1;
         else return i / 2;
-    }
-    
-    
-    protected E[] resize() {
-        return Arrays.copyOf(array, array.length * 2);
-    }
-    
+    }  
     
     protected void swap(int index1, int index2) {
-        E tmp = array[index1];
-        array[index1] = array[index2];
-        array[index2] = tmp;        
+        E tmp = array.get(index1);
+        array.set(index1, array.get(index2));
+        array.set(index2,tmp);        
     }
+    
+    protected E getLast(){
+		return array.get(size-1);
+    }
+    
+    protected void removeAll(){
+    	array.removeAllElements();
+    	size =0;
+    }
+    
 }

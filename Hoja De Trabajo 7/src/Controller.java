@@ -6,14 +6,16 @@ public class Controller {
 	
 	private Stack<Letter> thisLetter;
 	private BinaryHeap<BinaryTree<Letter>> fullTree ;
+
+
 		
 	
 	public Controller(String word){
 		thisLetter = new Stack<Letter>();
 		createLetterStack(word);
-		sort();
 		setFullTree(new BinaryHeap<BinaryTree<Letter>>());
 		createBinaryHeap();	
+		
 	}
 	
 	public void PrintLetters(){
@@ -29,7 +31,7 @@ public class Controller {
 	}
 	
 	public void printTree(){
-		System.out.println(fullTree.toString());
+		fullTree.printHeap();
 	}
 	
 	public void createLetterStack(String word){
@@ -56,50 +58,14 @@ public class Controller {
 				thisLetter.push(newLetter);
 			}
 		}
-	}
-	
-	public void sort(){
-		
-		boolean flag = true;   // set flag to true to begin first pass
-		Letter temp;   			//holding variable
-		
-		while ( flag ){
-			flag= false;    //set flag to false awaiting a possible swap
-			for( int j=1;  j < thisLetter.size();  j++ ){
-				Letter firstLetter = thisLetter.get(j-1);
-				Letter secondLetter = thisLetter.get(j);
-				if ( firstLetter.compareTo(secondLetter) == -1){   // change to > for ascending sort
-					temp = firstLetter;                //swap elements
-					thisLetter.setElementAt(secondLetter, j-1);;
-					thisLetter.setElementAt(temp,j);
-					flag = true;              //shows a swap occurred  
-				} 
-			} 
-		}
-	}
+	}		
 	
 	public void createBinaryHeap(){
-		BinaryHeap<BinaryTree<Letter>> toCreate = new BinaryHeap<BinaryTree<Letter>>();
-		int size = thisLetter.size();
-		for (int i=0; i<size; i++){
-			BinaryTree<Letter> newTree = new BinaryTree<Letter>(thisLetter.get(i));
-			toCreate.add(newTree);
+		Stack<Letter> newLetter = thisLetter;
+		while (!newLetter.isEmpty()){
+			fullTree.addOrdered(new BinaryTree<Letter>(thisLetter.pop()));
 		}
-	
-		for (int i=1; i<size; i++){
-			int left = toCreate.get(toCreate.leftIndex(i)).getValue().getTimes();
-			int right = toCreate.get(toCreate.rightIndex(i)).getValue().getTimes();
-			if (left<right) toCreate.swap(toCreate.leftIndex(i), toCreate.rightIndex(i));
-		}
-		for (int i=1; i<size; i++){
-			if (toCreate.hasLeftChild(i)){
-				toCreate.get(i).setLeft(toCreate.get(toCreate.leftIndex(i)));
-			}
-			else if (toCreate.hasRightChild(i)){
-				toCreate.get(i).setRight(toCreate.get(toCreate.rightIndex(i)));
-			}
-		}
-		setFullTree(toCreate);
+		this.thisLetter = newLetter;
 	}
 
 	public BinaryHeap<BinaryTree<Letter>> getFullTree() {
@@ -109,4 +75,69 @@ public class Controller {
 	public void setFullTree(BinaryHeap<BinaryTree<Letter>> fullTree) {
 		this.fullTree = fullTree;
 	}
+
+	public void setReferencedTree() {
+		BinaryHeap<BinaryTree<Letter>> referencedTree = new BinaryHeap<BinaryTree<Letter>>();
+		Letter parentValue = new Letter();
+		BinaryTree<Letter> parentTree = null;
+		
+
+		
+		for (int i = 1; i<fullTree.getSize(); i++){		
+			
+			if (i == 1){
+				parentValue = fullTree.get(i-1).getValue().concatenatedLetter(fullTree.get(i).getValue());
+				parentTree = new BinaryTree<Letter>(parentValue);					
+				referencedTree.add(fullTree.get(i-1));
+				referencedTree.add(fullTree.get(i));
+				referencedTree.add(parentTree);	
+			}
+			else if( i>1){
+				parentValue = parentTree.getValue().concatenatedLetter(fullTree.get(i).getValue());
+				parentTree = new BinaryTree<Letter>(parentValue);
+				referencedTree.add(fullTree.get(i));
+				referencedTree.add(parentTree);		
+			}		
+		}		
+		
+		this.fullTree = referencedTree;	
+	}
+	
+	public void codeGenerator(String a){
+
+		String Code = "";
+		
+		for (int i = fullTree.getSize()-1; i>=0; i--){
+			if (fullTree.get(i).getValue().getThisChar().length()>1) ;
+			else{
+				if (!a.equals(fullTree.get(i).getValue().getThisChar())){
+					if (i-2 > 0){
+						Code = Code + "1";
+					}
+				}
+				else {
+					if (i%2 == 0){
+						Code = Code + "1"; 
+						fullTree.get(i).getValue().setCode(Code);
+						thisLetter.add(fullTree.get(i).getValue());
+					}
+					else {
+						Code = Code + "0";
+						fullTree.get(i).getValue().setCode(Code);
+						thisLetter.add(fullTree.get(i).getValue());
+					}
+				}
+			}
+		}
+	}
+		
+	public void setCode(){
+		for (int i = 0; i<fullTree.getSize(); i++){
+			codeGenerator(fullTree.get(i).getValue().getThisChar());
+		}
+	}
+			
+		
+		
+	
 }

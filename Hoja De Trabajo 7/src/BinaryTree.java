@@ -8,22 +8,38 @@ import java.util.*;
  * http://www.cs.dartmouth.edu/~cbk/10/notes/7/code/BinaryTree.java
  */
 
-public class BinaryTree<E> implements Comparable<BinaryTree<E>> {
-	private BinaryTree<E> left, right;	// children; can be null
+public class BinaryTree<E extends Comparable<E>> implements Comparable<BinaryTree<E>> {
+	private BinaryTree<E> parent, left, right;	// children; can be null
 	E data;
 
 	/**
 	 * Constructs leaf node -- left and right are null
 	 */
 	public BinaryTree(E data) {
-		this.data = data; this.left = null; this.right = null;
+		this.data = data; this.parent = null; this.left = null; this.right = null;
 	}
 
 	/**
 	 * Constructs inner node
 	 */
+	public BinaryTree(E data, BinaryTree<E> parent, BinaryTree<E> left, BinaryTree<E> right) {
+		this.data = data; this.parent = parent; this.left = left; this.right = right;
+	}
+	
+	/**
+	 * Constructs inner node
+	 */
 	public BinaryTree(E data, BinaryTree<E> left, BinaryTree<E> right) {
-		this.data = data; this.left = left; this.right = right;
+		this.data = data; this.parent = null; this.left = left; this.right = right;
+	}
+	
+
+	public BinaryTree<E> getParent() {
+		return parent;
+	}
+
+	public void setParent(BinaryTree<E> parent) {
+		this.parent = parent;
 	}
 
 	/**
@@ -112,28 +128,21 @@ public class BinaryTree<E> implements Comparable<BinaryTree<E>> {
 	 * Returns a string representation of the tree
 	 */
 	public String toString() {
-		return toStringHelper("");
+		return ""+data;
 	}
 
-	/**
-	 * Recursively constructs a String representation of the tree from this node, 
-	 * starting with the given indentation and indenting further going down the tree
-	 */
-	public String toStringHelper(String indent) {
-		String res = indent + data + "\n";
-		if (hasLeft()) res += left.toStringHelper(indent+"  ");
-		if (hasRight()) res += right.toStringHelper(indent+"  ");
-		return res;
-	}
-
-	@Override
 	public int compareTo(BinaryTree<E> o) {
-		// TODO Auto-generated method stub
-		return 0;
+		if ((data).compareTo(o.getValue()) == -1) return -1;
+		else if ((data).compareTo(o.getValue()) == 1) return 1;
+		else return 0;
 	}
 	
 	public E getValue(){
 		return data;
+	}
+	
+	public void setValue(E data){
+		this.data = data;
 	}
 
 	public BinaryTree<E> getLeft() {

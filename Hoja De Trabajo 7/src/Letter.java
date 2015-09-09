@@ -5,6 +5,12 @@ public class Letter implements Comparable<Letter> {
 	private String thisChar;
 	private String code;
 	
+	public Letter() {
+		this.times = 0;
+		this.thisChar = "";
+		this.code ="";
+	}
+	
 	public Letter(int times, String thisChar) {
 		this.times = times;
 		this.thisChar = thisChar;
@@ -37,7 +43,7 @@ public class Letter implements Comparable<Letter> {
 
 	@Override
 	public String toString() {
-		return "Letter [times=" + times + ", thisChar=" + thisChar + "]";
+		return "Letter [Frecuencia=" + times + ", Letra=" + thisChar + ", Codigo=" + code + "]";
 	}
 
 	@Override
@@ -50,6 +56,12 @@ public class Letter implements Comparable<Letter> {
 	public boolean equals(Object o){
 		if (this.thisChar.equals(((Letter) o).getThisChar())) return true;
 		else return false;
+	}
+	
+	public Letter concatenatedLetter(Letter o){
+		int newLetterTimes = this.times + o.getTimes();
+		String newLetterChar = this.thisChar + o.getThisChar();
+		return new Letter(newLetterTimes, newLetterChar);
 	}
 	
 	public void plusOne(){
