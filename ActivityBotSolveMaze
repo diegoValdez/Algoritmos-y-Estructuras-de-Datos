@@ -1,0 +1,121 @@
+/*
+  Blank Simple Project.c
+  http://learn.parallax.com/propeller-c-tutorials 
+*/
+
+#include "simpletools.h"                      // Include simpletools header
+#include "abdrive.h"                          // Include abdrive header
+#include "ping.h"                             // Include ping header
+
+#include<stdlib.h>
+ 
+#define size 5
+struct stack {
+   int s[size];
+   int top;
+} st;
+
+int pop() {
+  int item;
+  item = st.s[0];
+  for(int j=0;j<=st.top;j++)
+   st.s[j]=st.s[j+1];
+  st.top--;
+  return (item);
+}
+
+void push(int item) {
+  st.top++;
+  st.s[st.top] = item;
+}
+                        
+
+int turn,irLeft,irRight; 
+
+void LaberintoT(){
+                      
+  drive_rampStep(50, -50);   
+                                      
+}
+void EsquinaIzquierda(){
+  drive_goto(-25,26);  
+}
+void EsquinaDerecha(){
+  drive_rampStep(26,-25);  
+}
+void YDerecha(){
+  drive_rampStep(26,-25);  
+}
+
+void YIzquierda(){
+  drive_rampStep(-25,-26);
+}                                 // Navigation variable
+
+void moveForward(){
+  drive_rampStep(10, 10);
+    
+}
+int main() 
+{  
+  int move;  
+  st.top =-1;                              // main function
+  drive_setRampStep(10);                      // 10 ticks/sec / 20 ms                       // Forward 2 RPS
+  // While disatance greater than or equal
+  // to 20 cm, wait 5 ms & recheck.
+  low(26);
+  low(27);
+  
+
+  
+  push(1);
+  push(2);
+  push(3);
+  push(4); 
+    
+  while(1){
+    
+    freqout(11, 1, 38000);                      // Check left & right objects
+    irLeft = input(10);
+
+    freqout(1, 1, 38000);
+    irRight = input(2);
+   
+    
+    while(ping_cm(8)>=15){
+      
+      drive_rampStep(64,64);
+      move = pop();
+      
+      if(move==1 && irLeft==0){
+        pause(5);
+        moveForward();
+        YIzquierda();
+        push(1);
+      }   
+      // se define un cruce en T
+      if(move ==2 && ping_cm(8)<=15){
+        pause(5);
+        moveForward();
+        push(1);
+        push(2);
+      }
+      if(move==3 && irRight==1){
+        pause(5);
+        moveForward();
+        EsquinaDerecha();
+        push(1);
+        push(2);
+        push(3);     
+      }
+      if(move==4){
+        pause(5);
+        LaberintoT();
+        push(1);
+        push(2);
+        push(3);
+        push(4); 
+      } 
+    }       
+  }
+}
+
